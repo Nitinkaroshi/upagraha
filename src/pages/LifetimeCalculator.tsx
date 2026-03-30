@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
-import { Calculator, CheckCircle, XCircle, AlertTriangle, Info, Download } from 'lucide-react';
+import { Calculator, CheckCircle, XCircle, AlertTriangle, Info, Download, FileText } from 'lucide-react';
 import { calculateOrbitalLifetime, orbitalPeriod, orbitalVelocity, type LifetimeResult } from '@/lib/orbital';
+import { generateCompliancePDF } from '@/lib/pdfReport';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
 const presets = [
@@ -262,11 +263,18 @@ export default function LifetimeCalculator() {
                     <div className="flex items-center gap-3">
                       <RiskBadge level={result.riskLevel} />
                       <button
+                        onClick={() => result && generateCompliancePDF(altitude, mass, area, dragCd, solar, result)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-black text-xs font-semibold hover:bg-white/90 transition-all"
+                      >
+                        <FileText className="w-3.5 h-3.5" />
+                        PDF Report
+                      </button>
+                      <button
                         onClick={handleExport}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/60 hover:text-white hover:border-white/20 text-xs font-medium transition-all"
                       >
                         <Download className="w-3.5 h-3.5" />
-                        Export
+                        .txt
                       </button>
                     </div>
                   </div>

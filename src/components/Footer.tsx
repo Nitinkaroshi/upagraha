@@ -27,6 +27,8 @@ export default function Footer() {
               <li><Link to="/tracker" className="text-white/40 hover:text-white text-sm transition-colors">Live Tracker</Link></li>
               <li><Link to="/lifetime-calculator" className="text-white/40 hover:text-white text-sm transition-colors">Lifetime Calculator</Link></li>
               <li><Link to="/conjunctions" className="text-white/40 hover:text-white text-sm transition-colors">Conjunctions</Link></li>
+              <li><Link to="/deorbit-advisor" className="text-white/40 hover:text-white text-sm transition-colors">Deorbit Advisor</Link></li>
+              <li><Link to="/sustainability" className="text-white/40 hover:text-white text-sm transition-colors">Sustainability Score</Link></li>
             </ul>
           </div>
 
