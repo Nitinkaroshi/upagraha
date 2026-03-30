@@ -1,7 +1,26 @@
 {
   "name": "upagraha",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Open-source space debris monitoring and regulatory compliance platform for satellite operators",
+  "author": "Nitin Karoshi <contact@upagraha.com>",
+  "license": "MIT",
+  "homepage": "https://www.upagraha.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nitinkaroshi/upagraha.git"
+  },
+  "keywords": [
+    "space-debris",
+    "satellite-tracking",
+    "orbital-mechanics",
+    "space-situational-awareness",
+    "fcc-compliance",
+    "orbital-lifetime",
+    "conjunction-assessment",
+    "celestrak",
+    "three-js",
+    "react"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
