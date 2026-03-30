@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space-950: #000000;
+  --color-space-900: #050505;
+  --color-space-800: #0a0a0a;
+  --color-space-700: #141414;
+  --color-space-600: #1f1f1f;
+  --color-space-500: #2a2a2a;
+  --color-space-400: #404040;
+  --color-space-300: #666666;
+  --color-space-200: #999999;
+  --color-space-100: #cccccc;
+  --color-accent: #ffffff;
+  --color-accent-muted: #e0e0e0;
+  --color-accent-dim: #999999;
+  --color-risk-critical: #ff4444;
+  --color-risk-high: #ff8800;
+  --color-risk-medium: #ffcc00;
+  --color-risk-low: #44cc44;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Glow effects */
+.glow {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.08), 0 0 80px rgba(255, 255, 255, 0.03);
+}
+.glow-text {
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+/* Grain overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
+
+/* Subtle star background */
+.starfield {
+  background-image:
+    radial-gradient(0.5px 0.5px at 10% 20%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.5px 0.5px at 30% 60%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(0.5px 0.5px at 50% 10%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(0.5px 0.5px at 70% 40%, rgba(255,255,255,0.15), transparent),
+    radial-gradient(0.5px 0.5px at 90% 80%, rgba(255,255,255,0.25), transparent),
+    radial-gradient(0.5px 0.5px at 15% 85%, rgba(255,255,255,0.1), transparent),
+    radial-gradient(0.5px 0.5px at 45% 45%, rgba(255,255,255,0.1), transparent),
+    radial-gradient(0.5px 0.5px at 75% 70%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.2), transparent);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
