@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
+  <rect width="1500" height="500" fill="#000000"/>
+
+  <!-- Stars -->
+  <circle cx="50" cy="80" r="1" fill="#ffffff" opacity="0.3"/>
+  <circle cx="200" cy="150" r="0.7" fill="#ffffff" opacity="0.2"/>
+  <circle cx="400" cy="60" r="0.8" fill="#ffffff" opacity="0.25"/>
+  <circle cx="600" cy="120" r="0.7" fill="#ffffff" opacity="0.15"/>
+  <circle cx="900" cy="40" r="1" fill="#ffffff" opacity="0.2"/>
+  <circle cx="1100" cy="100" r="0.7" fill="#ffffff" opacity="0.3"/>
+  <circle cx="1300" cy="70" r="0.8" fill="#ffffff" opacity="0.2"/>
+  <circle cx="1400" cy="160" r="0.7" fill="#ffffff" opacity="0.15"/>
+  <circle cx="100" cy="350" r="0.7" fill="#ffffff" opacity="0.2"/>
+  <circle cx="350" cy="420" r="1" fill="#ffffff" opacity="0.15"/>
+  <circle cx="700" cy="450" r="0.8" fill="#ffffff" opacity="0.2"/>
+  <circle cx="1050" cy="380" r="0.8" fill="#ffffff" opacity="0.25"/>
+  <circle cx="1350" cy="430" r="0.7" fill="#ffffff" opacity="0.15"/>
+
+  <!-- Earth -->
+  <circle cx="300" cy="250" r="105" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.12"/>
+  <!-- Orbital rings -->
+  <ellipse cx="300" cy="250" rx="165" ry="55" fill="none" stroke="#ffffff" stroke-width="2" transform="rotate(-25 300 250)" opacity="0.4"/>
+  <ellipse cx="300" cy="250" rx="195" ry="35" fill="none" stroke="#ffffff" stroke-width="1.2" transform="rotate(15 300 250)" opacity="0.22"/>
+  <ellipse cx="300" cy="250" rx="135" ry="68" fill="none" stroke="#ffffff" stroke-width="0.8" transform="rotate(-55 300 250)" opacity="0.15"/>
+  <!-- Center dot -->
+  <circle cx="300" cy="250" r="5" fill="#ffffff"/>
+  <!-- Satellite dots -->
+  <circle cx="190" cy="210" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="415" cy="235" r="2.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="360" cy="190" r="2" fill="#ffffff" opacity="0.5"/>
+  <circle cx="240" cy="305" r="2" fill="#ffffff" opacity="0.4"/>
+  <circle cx="440" cy="275" r="1.5" fill="#ffffff" opacity="0.3"/>
+
+  <!-- UPAGRAHA - large block letters -->
+  <g fill="#ffffff" transform="translate(680, 200)">
+    <!-- U -->
+    <rect x="0" y="0" width="10" height="60"/>
+    <rect x="42" y="0" width="10" height="60"/>
+    <rect x="0" y="52" width="52" height="10"/>
+    <!-- P -->
+    <rect x="64" y="0" width="10" height="62"/>
+    <rect x="64" y="0" width="40" height="10"/>
+    <rect x="64" y="24" width="40" height="10"/>
+    <rect x="94" y="0" width="10" height="34"/>
+    <!-- A -->
+    <rect x="116" y="0" width="10" height="62"/>
+    <rect x="152" y="0" width="10" height="62"/>
+    <rect x="116" y="0" width="46" height="10"/>
+    <rect x="116" y="26" width="46" height="10"/>
+    <!-- G -->
+    <rect x="174" y="0" width="10" height="62"/>
+    <rect x="174" y="0" width="46" height="10"/>
+    <rect x="174" y="52" width="46" height="10"/>
+    <rect x="210" y="26" width="10" height="36"/>
+    <rect x="196" y="26" width="24" height="10"/>
+    <!-- R -->
+    <rect x="232" y="0" width="10" height="62"/>
+    <rect x="232" y="0" width="40" height="10"/>
+    <rect x="232" y="24" width="40" height="10"/>
+    <rect x="262" y="0" width="10" height="34"/>
+    <polygon points="248,34 256,34 272,62 264,62"/>
+    <!-- A -->
+    <rect x="282" y="0" width="10" height="62"/>
+    <rect x="318" y="0" width="10" height="62"/>
+    <rect x="282" y="0" width="46" height="10"/>
+    <rect x="282" y="26" width="46" height="10"/>
+    <!-- H -->
+    <rect x="340" y="0" width="10" height="62"/>
+    <rect x="382" y="0" width="10" height="62"/>
+    <rect x="340" y="26" width="52" height="10"/>
+    <!-- A -->
+    <rect x="404" y="0" width="10" height="62"/>
+    <rect x="440" y="0" width="10" height="62"/>
+    <rect x="404" y="0" width="46" height="10"/>
+    <rect x="404" y="26" width="46" height="10"/>
+  </g>
+
+  <!-- Decorative line under text -->
+  <line x1="680" y1="282" x2="1130" y2="282" stroke="#ffffff" stroke-width="1.5" opacity="0.1"/>
+</svg>

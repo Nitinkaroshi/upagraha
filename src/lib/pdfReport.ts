@@ -28,7 +28,7 @@ export function generateCompliancePDF(
   doc.setTextColor(180, 180, 180);
   doc.text('Orbital Lifetime Compliance Report', 15, 26);
   doc.text(`Generated: ${now}`, pageWidth - 15, 18, { align: 'right' });
-  doc.text('www.upagraha.com', pageWidth - 15, 26, { align: 'right' });
+  doc.text('upagraha-ten.vercel.app', pageWidth - 15, 26, { align: 'right' });
 
   y = 45;
 
@@ -198,7 +198,7 @@ export function generateCompliancePDF(
   doc.setFontSize(8);
   doc.setTextColor(150, 150, 150);
   doc.text('Upagraha — Safeguarding Space, Securing the Future', 15, y);
-  doc.text('www.upagraha.com', pageWidth - 15, y, { align: 'right' });
+  doc.text('upagraha-ten.vercel.app', pageWidth - 15, y, { align: 'right' });
 
   // Save
   doc.save(`upagraha-compliance-report-${altitude}km-${now}.pdf`);

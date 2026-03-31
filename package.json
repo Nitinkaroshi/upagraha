@@ -2,9 +2,9 @@
   "name": "upagraha",
   "version": "1.0.0",
   "description": "Open-source space debris monitoring and regulatory compliance platform for satellite operators",
-  "author": "Nitin Karoshi <contact@upagraha.com>",
+  "author": "Nitin Karoshi <upagraha.space@gmail.com>",
   "license": "MIT",
-  "homepage": "https://www.upagraha.com",
+  "homepage": "https://upagraha-ten.vercel.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/Nitinkaroshi/upagraha.git"

@@ -52,4 +52,4 @@ Contributions welcome. Please open an issue first to discuss what you'd like to 
 
 ---
 
-Built by [Upagraha](https://www.upagraha.com)
+Built by [Upagraha](https://upagraha-ten.vercel.app)

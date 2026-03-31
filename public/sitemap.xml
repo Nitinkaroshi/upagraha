@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.upagraha.com/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://www.upagraha.com/lifetime-calculator</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.upagraha.com/tracker</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://www.upagraha.com/conjunctions</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://www.upagraha.com/deorbit-advisor</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.upagraha.com/sustainability</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.upagraha.com/blog</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://www.upagraha.com/blog/fcc-5-year-deorbit-rule-compliance-guide</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.upagraha.com/blog/what-is-kessler-syndrome</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.upagraha.com/blog/orbital-lifetime-calculation-explained</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.upagraha.com/about</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/lifetime-calculator</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/tracker</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/conjunctions</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/deorbit-advisor</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/sustainability</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/fcc-5-year-deorbit-rule-compliance-guide</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/what-is-kessler-syndrome</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/orbital-lifetime-calculation-explained</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/about</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
 </urlset>

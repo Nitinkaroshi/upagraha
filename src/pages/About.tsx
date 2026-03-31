@@ -85,7 +85,7 @@ export default function About() {
               GitHub
             </a>
             <a
-              href="mailto:contact@upagraha.com"
+              href="mailto:upagraha.space@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/[0.08] rounded-lg transition-all"
             >
               <Mail className="w-4 h-4" />

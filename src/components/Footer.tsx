@@ -37,7 +37,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li><Link to="/about" className="text-white/40 hover:text-white text-sm transition-colors">About</Link></li>
               <li><a href="https://github.com/upagraha" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white text-sm transition-colors">GitHub</a></li>
-              <li><a href="mailto:contact@upagraha.com" className="text-white/40 hover:text-white text-sm transition-colors">Contact</a></li>
+              <li><a href="mailto:upagraha.space@gmail.com" className="text-white/40 hover:text-white text-sm transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>

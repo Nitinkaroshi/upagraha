@@ -8,7 +8,7 @@
 Show HN: Upagraha – Open-source space debris tracking and compliance tools
 
 **Text:**
-Hey HN, I built Upagraha (https://www.upagraha.com) — a free, open-source platform for satellite operators and space enthusiasts to track debris, calculate orbital lifetimes, and check regulatory compliance.
+Hey HN, I built Upagraha (https://upagraha-ten.vercel.app) — a free, open-source platform for satellite operators and space enthusiasts to track debris, calculate orbital lifetimes, and check regulatory compliance.
 
 The tools:
 
@@ -49,7 +49,7 @@ It also has:
 
 Everything runs in the browser, no sign-up needed.
 
-Link: https://www.upagraha.com/lifetime-calculator
+Link: https://upagraha-ten.vercel.app/lifetime-calculator
 GitHub: https://github.com/Nitinkaroshi/upagraha
 
 I'm not an aerospace engineer — I'm a software developer who's passionate about space sustainability. The calculations use simplified atmospheric models, so this is for estimation/screening, not operational use. Would love feedback on accuracy and what features would be most useful.
@@ -62,7 +62,7 @@ I'm not an aerospace engineer — I'm a software developer who's passionate abou
 Free orbital lifetime calculator + deorbit strategy advisor for CubeSat missions
 
 **Text:**
-Built a free tool that might be useful for CubeSat mission planning: https://www.upagraha.com/lifetime-calculator
+Built a free tool that might be useful for CubeSat mission planning: https://upagraha-ten.vercel.app/lifetime-calculator
 
 Enter your CubeSat's altitude, mass, and cross-section → get instant orbital lifetime estimate with FCC 5-year deorbit compliance check. Has presets for 3U CubeSats.
 
@@ -130,7 +130,7 @@ Enter altitude, mass, cross-section → instant deorbit estimate.
 ✓ Altitude decay chart
 ✓ PDF compliance report export
 
-Try it: upagraha.com/lifetime-calculator
+Try it: upagraha-ten.vercel.app/lifetime-calculator
 
 **Tweet 4:**
 Tool 2: Deorbit Strategy Advisor
@@ -173,7 +173,7 @@ Built with React, TypeScript, Three.js, TailwindCSS.
 Entirely client-side. No backend. No tracking.
 
 GitHub: github.com/Nitinkaroshi/upagraha
-Website: upagraha.com
+Website: upagraha-ten.vercel.app
 
 Star the repo if you think space sustainability matters ⭐
 
@@ -194,7 +194,7 @@ I'm excited to share something I've been building: **Upagraha** — a free, open
 
 Everything runs in the browser. No sign-up, no cost, open source.
 
-🔗 Try it: www.upagraha.com
+🔗 Try it: upagraha-ten.vercel.app
 💻 GitHub: github.com/Nitinkaroshi/upagraha
 
 I'm looking for:

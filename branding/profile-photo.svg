@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#000000"/>
+
+  <!-- Earth -->
+  <circle cx="200" cy="155" r="60" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.15"/>
+  <!-- Orbital rings -->
+  <ellipse cx="200" cy="155" rx="95" ry="35" fill="none" stroke="#ffffff" stroke-width="1.8" transform="rotate(-30 200 155)" opacity="0.5"/>
+  <ellipse cx="200" cy="155" rx="115" ry="24" fill="none" stroke="#ffffff" stroke-width="1.2" transform="rotate(18 200 155)" opacity="0.3"/>
+  <ellipse cx="200" cy="155" rx="78" ry="45" fill="none" stroke="#ffffff" stroke-width="0.8" transform="rotate(-58 200 155)" opacity="0.2"/>
+  <!-- Center dot -->
+  <circle cx="200" cy="155" r="6" fill="#ffffff"/>
+  <!-- Satellite dots -->
+  <circle cx="138" cy="125" r="3" fill="#ffffff" opacity="0.85"/>
+  <circle cx="272" cy="140" r="2.5" fill="#ffffff" opacity="0.65"/>
+  <circle cx="245" cy="108" r="2" fill="#ffffff" opacity="0.5"/>
+  <circle cx="163" cy="200" r="2" fill="#ffffff" opacity="0.4"/>
+
+  <!-- UPAGRAHA - clean block letters -->
+  <g fill="#ffffff" transform="translate(68, 285)">
+    <!-- U -->
+    <rect x="0" y="0" width="4" height="30"/>
+    <rect x="20" y="0" width="4" height="30"/>
+    <rect x="0" y="26" width="24" height="4"/>
+    <!-- P -->
+    <rect x="30" y="0" width="4" height="30"/>
+    <rect x="30" y="0" width="20" height="4"/>
+    <rect x="30" y="12" width="20" height="4"/>
+    <rect x="46" y="0" width="4" height="16"/>
+    <!-- A -->
+    <rect x="56" y="0" width="4" height="30"/>
+    <rect x="74" y="0" width="4" height="30"/>
+    <rect x="56" y="0" width="22" height="4"/>
+    <rect x="56" y="13" width="22" height="4"/>
+    <!-- G -->
+    <rect x="84" y="0" width="4" height="30"/>
+    <rect x="84" y="0" width="22" height="4"/>
+    <rect x="84" y="26" width="22" height="4"/>
+    <rect x="102" y="13" width="4" height="17"/>
+    <rect x="94" y="13" width="12" height="4"/>
+    <!-- R -->
+    <rect x="112" y="0" width="4" height="30"/>
+    <rect x="112" y="0" width="20" height="4"/>
+    <rect x="112" y="12" width="20" height="4"/>
+    <rect x="128" y="0" width="4" height="16"/>
+    <polygon points="120,16 124,16 132,30 128,30"/>
+    <!-- A -->
+    <rect x="138" y="0" width="4" height="30"/>
+    <rect x="156" y="0" width="4" height="30"/>
+    <rect x="138" y="0" width="22" height="4"/>
+    <rect x="138" y="13" width="22" height="4"/>
+    <!-- H -->
+    <rect x="166" y="0" width="4" height="30"/>
+    <rect x="184" y="0" width="4" height="30"/>
+    <rect x="166" y="13" width="22" height="4"/>
+    <!-- A -->
+    <rect x="194" y="0" width="4" height="30"/>
+    <rect x="212" y="0" width="4" height="30"/>
+    <rect x="194" y="0" width="22" height="4"/>
+    <rect x="194" y="13" width="22" height="4"/>
+  </g>
+
+  <!-- Decorative line -->
+  <line x1="110" y1="328" x2="290" y2="328" stroke="#ffffff" stroke-width="0.8" opacity="0.15"/>
+</svg>
