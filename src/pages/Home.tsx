@@ -53,11 +53,9 @@ export default function Home() {
   }, [satellites]);
 
   return (
-    <div className="min-h-screen grain">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 starfield opacity-30" />
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[70vh]">
             <div className="text-center lg:text-left">

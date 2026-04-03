@@ -343,7 +343,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-16 grain">
+    <div className="min-h-screen pt-24 pb-16">
       <article className="max-w-3xl mx-auto px-4 sm:px-6">
         <Link
           to="/blog"

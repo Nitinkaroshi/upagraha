@@ -55,7 +55,7 @@ export default function Tracker() {
   }), [satellites]);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 grain">
+    <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">

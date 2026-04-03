@@ -121,7 +121,7 @@ export default function DeorbitAdvisor() {
   }, [altitude, mass, area, hasPropulsion]);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 grain">
+    <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/50 text-xs font-medium mb-4">

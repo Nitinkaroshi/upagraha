@@ -83,7 +83,7 @@ function BlogPostCard({ post }: { post: BlogPost }) {
 
 export default function Blog() {
   return (
-    <div className="min-h-screen pt-24 pb-16 grain">
+    <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Blog</h1>
