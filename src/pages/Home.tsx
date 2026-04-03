@@ -1,31 +1,57 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calculator, Radio, ShieldCheck, ExternalLink } from 'lucide-react';
+import { ArrowRight, Calculator, Radio, ShieldCheck, Compass, Leaf, ExternalLink } from 'lucide-react';
 import { GitHubIcon } from '@/components/Icons';
 import EarthGlobe from '@/components/EarthGlobe';
 import StatsBar from '@/components/StatsBar';
+import { useSatelliteData } from '@/lib/useSatelliteData';
+import { useMemo } from 'react';
 
 const tools = [
   {
     icon: Calculator,
     title: 'Orbital Lifetime Calculator',
-    description: 'Calculate how long a satellite will stay in orbit. Check FCC 5-year and ESA 25-year compliance instantly.',
+    description: 'Calculate deorbit time. Check FCC 5-year and ESA 25-year compliance. Export PDF reports.',
     to: '/lifetime-calculator',
   },
   {
     icon: Radio,
     title: 'Live Satellite Tracker',
-    description: 'Real-time 3D visualization of satellites and debris in Earth orbit using public catalog data.',
+    description: 'Real-time 3D visualization with live CelesTrak data. 15 satellite catalog groups.',
     to: '/tracker',
   },
   {
     icon: ShieldCheck,
     title: 'Conjunction Risk Viewer',
-    description: 'Monitor close approach events between tracked objects. Assess collision probability and risk levels.',
+    description: 'Monitor close approach events. Assess collision probability and risk levels.',
     to: '/conjunctions',
+  },
+  {
+    icon: Compass,
+    title: 'Deorbit Strategy Advisor',
+    description: 'Get ranked deorbit recommendations with cost estimates and delta-V calculations.',
+    to: '/deorbit-advisor',
+  },
+  {
+    icon: Leaf,
+    title: 'Sustainability Score',
+    description: 'Rate your mission 0-100 on 5 debris risk factors. Get a grade and improvement plan.',
+    to: '/sustainability',
   },
 ];
 
 export default function Home() {
+  const { satellites, loading } = useSatelliteData('active');
+
+  const liveCounts = useMemo(() => {
+    if (!satellites.length) return undefined;
+    return {
+      total: satellites.length,
+      satellites: satellites.filter(s => s.type === 'satellite').length,
+      debris: satellites.filter(s => s.type === 'debris').length,
+      rocketBodies: satellites.filter(s => s.type === 'rocket-body').length,
+    };
+  }, [satellites]);
+
   return (
     <div className="min-h-screen grain">
       {/* Hero */}
@@ -37,7 +63,7 @@ export default function Home() {
             <div className="text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/60 text-xs font-medium mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse-slow" />
-                Open Source Space Debris Platform
+                {loading ? 'Loading live satellite data...' : `Tracking ${satellites.length.toLocaleString()} objects live`}
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
@@ -70,7 +96,7 @@ export default function Home() {
             </div>
 
             <div className="h-[400px] lg:h-[550px]">
-              <EarthGlobe />
+              <EarthGlobe satellites={satellites} showCounter={!loading && satellites.length > 0} />
             </div>
           </div>
         </div>
@@ -79,7 +105,7 @@ export default function Home() {
       {/* Stats */}
       <section className="py-12 border-y border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <StatsBar />
+          <StatsBar liveCounts={liveCounts} />
         </div>
       </section>
 
@@ -89,12 +115,12 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">Free Space Debris Tools</h2>
             <p className="text-white/35 max-w-2xl mx-auto">
-              Built for satellite operators, university programs, and the space community.
+              5 tools built for satellite operators, university programs, and the space community.
               No sign-up required. Open source forever.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tools.map((tool) => (
               <Link
                 key={tool.to}
@@ -127,13 +153,13 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="https://github.com/upagraha"
+                href="https://github.com/Nitinkaroshi/upagraha"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/[0.08] rounded-lg transition-all"
               >
                 <GitHubIcon className="w-4 h-4" />
-                View on GitHub
+                Star on GitHub
               </a>
               <Link
                 to="/about"
