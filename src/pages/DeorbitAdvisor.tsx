@@ -116,7 +116,9 @@ export default function DeorbitAdvisor() {
   const [hasPropulsion, setHasPropulsion] = useState(false);
 
   const strategies = useMemo(() => {
-    if (altitude < 150 || altitude > 2000 || mass <= 0 || area <= 0) return [];
+    if (!Number.isFinite(altitude) || altitude < 150 || altitude > 2000) return [];
+    if (!Number.isFinite(mass) || mass <= 0) return [];
+    if (!Number.isFinite(area) || area <= 0) return [];
     return recommendDeorbitStrategies(altitude, mass, area, hasPropulsion);
   }, [altitude, mass, area, hasPropulsion]);
 

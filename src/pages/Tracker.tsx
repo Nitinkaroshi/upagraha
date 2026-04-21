@@ -15,6 +15,11 @@ const typeConfig = {
   unknown: { icon: Globe, label: 'Unknown' },
 };
 
+function fmt(n: number | null | undefined, digits = 1, suffix = ''): string {
+  if (!Number.isFinite(n as number)) return '—';
+  return (n as number).toFixed(digits) + suffix;
+}
+
 export default function Tracker() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<FilterType>('all');
@@ -159,7 +164,7 @@ export default function Tracker() {
                           <div className="min-w-0 flex-1">
                             <div className="text-sm text-white truncate">{obj.name}</div>
                             <div className="text-[11px] text-white/25 font-mono">
-                              {obj.noradId} · {obj.altitude.toFixed(0)}km · {obj.inclination.toFixed(1)}°
+                              {obj.noradId} · {fmt(obj.altitude, 0, 'km')} · {fmt(obj.inclination, 1, '°')}
                             </div>
                           </div>
                         </div>
@@ -197,10 +202,12 @@ export default function Tracker() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {[
-                    { label: 'Altitude', value: `${selectedObject.altitude.toFixed(1)} km` },
-                    { label: 'Inclination', value: `${selectedObject.inclination.toFixed(2)}°` },
-                    { label: 'Velocity', value: `${orbitalVelocity(selectedObject.altitude).toFixed(2)} km/s` },
-                    { label: 'Period', value: `${selectedObject.period?.toFixed(1) || (orbitalPeriod(selectedObject.altitude) / 60).toFixed(1)} min` },
+                    { label: 'Altitude', value: fmt(selectedObject.altitude, 1, ' km') },
+                    { label: 'Inclination', value: fmt(selectedObject.inclination, 2, '°') },
+                    { label: 'Velocity', value: Number.isFinite(selectedObject.altitude) ? `${orbitalVelocity(selectedObject.altitude).toFixed(2)} km/s` : '—' },
+                    { label: 'Period', value: Number.isFinite(selectedObject.period)
+                        ? fmt(selectedObject.period, 1, ' min')
+                        : (Number.isFinite(selectedObject.altitude) ? `${(orbitalPeriod(selectedObject.altitude) / 60).toFixed(1)} min` : '—') },
                   ].map(({ label, value }) => (
                     <div key={label}>
                       <div className="text-[10px] text-white/25 uppercase tracking-wider">{label}</div>

@@ -42,7 +42,10 @@ export default function SustainabilityScore() {
   const update = (partial: Partial<SustainabilityInput>) => setInput((prev) => ({ ...prev, ...partial }));
 
   const result = useMemo(() => {
-    if (input.altitude < 150 || input.altitude > 2000 || input.mass <= 0) return null;
+    const { altitude, mass, crossSection } = input;
+    if (!Number.isFinite(altitude) || altitude < 150 || altitude > 2000) return null;
+    if (!Number.isFinite(mass) || mass <= 0) return null;
+    if (!Number.isFinite(crossSection) || crossSection <= 0) return null;
     return calculateSustainabilityScore(input);
   }, [input]);
 

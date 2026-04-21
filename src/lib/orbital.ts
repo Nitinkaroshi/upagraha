@@ -98,13 +98,20 @@ export function calculateOrbitalLifetime(
   dragCoefficient: number = 2.2,
   solarActivity: 'low' | 'moderate' | 'high' = 'moderate'
 ): LifetimeResult {
+  // Guard against invalid/extreme inputs that would produce NaN or infinite loops
+  const safeAlt = Number.isFinite(altitudeKm) ? Math.max(120, Math.min(altitudeKm, 2000)) : 500;
+  const safeRatio = Number.isFinite(areaMassRatio) && areaMassRatio > 0
+    ? Math.min(areaMassRatio, 10) // cap at 10 m²/kg (already absurd)
+    : 0.005;
+  const safeCd = Number.isFinite(dragCoefficient) && dragCoefficient > 0 ? dragCoefficient : 2.2;
+
   const solarMultiplier = {
     low: 0.5,
     moderate: 1.0,
     high: 2.5,
   }[solarActivity];
 
-  let currentAlt = altitudeKm;
+  let currentAlt = safeAlt;
   const decayProfile: { year: number; altitude: number }[] = [{ year: 0, altitude: currentAlt }];
   let totalDays = 0;
   const dt = 1; // day step
@@ -115,13 +122,15 @@ export function calculateOrbitalLifetime(
     const velocity = orbitalVelocity(currentAlt) * 1000; // m/s
 
     // Drag deceleration: a_drag = -0.5 * Cd * (A/m) * rho * v²
-    const dragAccel = 0.5 * dragCoefficient * areaMassRatio * density * velocity * velocity;
+    const dragAccel = 0.5 * safeCd * safeRatio * density * velocity * velocity;
 
     // Rate of altitude decrease (simplified from orbit-averaged drag)
     const period = orbitalPeriod(currentAlt);
     const dAltPerOrbit = (dragAccel * period * period) / (2 * Math.PI * r) * 1000; // km
     const orbitsPerDay = 86400 / period;
     const dAltPerDay = dAltPerOrbit * orbitsPerDay;
+
+    if (!Number.isFinite(dAltPerDay) || dAltPerDay <= 0) break;
 
     currentAlt -= dAltPerDay * dt;
     totalDays += dt;

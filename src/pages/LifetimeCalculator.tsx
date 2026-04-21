@@ -92,7 +92,10 @@ export default function LifetimeCalculator() {
   const [solar, setSolar] = useState<'low' | 'moderate' | 'high'>('moderate');
 
   const result = useMemo(() => {
-    if (altitude < 150 || altitude > 2000 || mass <= 0 || area <= 0) return null;
+    if (!Number.isFinite(altitude) || altitude < 150 || altitude > 2000) return null;
+    if (!Number.isFinite(mass) || mass <= 0) return null;
+    if (!Number.isFinite(area) || area <= 0) return null;
+    if (!Number.isFinite(dragCd) || dragCd <= 0) return null;
     return calculateOrbitalLifetime(altitude, area / mass, dragCd, solar);
   }, [altitude, mass, area, dragCd, solar]);
 
@@ -226,19 +229,19 @@ export default function LifetimeCalculator() {
               <div className="space-y-2.5 text-sm">
                 <div className="flex justify-between">
                   <span className="text-white/30">Period</span>
-                  <span className="text-white font-mono text-xs">{(period / 60).toFixed(1)} min</span>
+                  <span className="text-white font-mono text-xs">{Number.isFinite(period) ? `${(period / 60).toFixed(1)} min` : '—'}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-white/30">Velocity</span>
-                  <span className="text-white font-mono text-xs">{velocity.toFixed(2)} km/s</span>
+                  <span className="text-white font-mono text-xs">{Number.isFinite(velocity) ? `${velocity.toFixed(2)} km/s` : '—'}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-white/30">Orbits/Day</span>
-                  <span className="text-white font-mono text-xs">{(86400 / period).toFixed(1)}</span>
+                  <span className="text-white font-mono text-xs">{Number.isFinite(period) && period > 0 ? (86400 / period).toFixed(1) : '—'}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-white/30">A/m Ratio</span>
-                  <span className="text-white font-mono text-xs">{(area / mass).toFixed(4)} m²/kg</span>
+                  <span className="text-white font-mono text-xs">{Number.isFinite(area / mass) ? `${(area / mass).toFixed(4)} m²/kg` : '—'}</span>
                 </div>
               </div>
             </div>
