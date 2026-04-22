@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calculator, Radio, ShieldCheck, Compass, Leaf, ExternalLink } from 'lucide-react';
+import { ArrowRight, Calculator, Radio, ShieldCheck, Compass, Leaf, ExternalLink, MapPin } from 'lucide-react';
 import { GitHubIcon } from '@/components/Icons';
 import EarthGlobe from '@/components/EarthGlobe';
 import StatsBar from '@/components/StatsBar';
@@ -7,6 +7,13 @@ import { useSatelliteData } from '@/lib/useSatelliteData';
 import { useMemo } from 'react';
 
 const tools = [
+  {
+    icon: MapPin,
+    title: 'Satellites Over You',
+    description: 'See which satellites are passing overhead right now. Real-time SGP4 propagation from your location.',
+    to: '/satellites-over-you',
+    badge: 'NEW',
+  },
   {
     icon: Calculator,
     title: 'Orbital Lifetime Calculator',
@@ -123,8 +130,13 @@ export default function Home() {
               <Link
                 key={tool.to}
                 to={tool.to}
-                className="group bg-white/[0.02] border border-white/[0.06] rounded-xl p-7 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300"
+                className="group relative bg-white/[0.02] border border-white/[0.06] rounded-xl p-7 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300"
               >
+                {tool.badge && (
+                  <span className="absolute top-4 right-4 text-[9px] font-bold px-1.5 py-0.5 rounded bg-white text-black tracking-wider">
+                    {tool.badge}
+                  </span>
+                )}
                 <tool.icon className="w-6 h-6 text-white/30 mb-5 group-hover:text-white/60 transition-colors" />
                 <h3 className="text-lg font-semibold text-white mb-2">{tool.title}</h3>
                 <p className="text-white/35 text-sm leading-relaxed mb-5">{tool.description}</p>

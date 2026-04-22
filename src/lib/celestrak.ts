@@ -107,6 +107,61 @@ export async function searchSatellites(name: string): Promise<ParsedSatellite[]>
   return data.map(parseRecord);
 }
 
+/** Parsed TLE with the two line elements needed for SGP4 propagation */
+export interface TLEEntry {
+  name: string;
+  noradId: number;
+  tle1: string;
+  tle2: string;
+}
+
+/**
+ * Parse the classic 3-line TLE format into structured entries.
+ * Format:
+ *   LINE 0: Satellite name
+ *   LINE 1: 1 NNNNNU ...
+ *   LINE 2: 2 NNNNN ...
+ */
+function parseTLEText(text: string): TLEEntry[] {
+  const lines = text.split(/\r?\n/).map((l) => l.trimEnd()).filter((l) => l.length > 0);
+  const entries: TLEEntry[] = [];
+  for (let i = 0; i + 2 < lines.length; i += 3) {
+    const name = lines[i].trim();
+    const tle1 = lines[i + 1];
+    const tle2 = lines[i + 2];
+    if (!tle1.startsWith('1 ') || !tle2.startsWith('2 ')) continue;
+    const noradId = parseInt(tle1.slice(2, 7).trim(), 10);
+    if (!Number.isFinite(noradId)) continue;
+    entries.push({ name, noradId, tle1, tle2 });
+  }
+  return entries;
+}
+
+/**
+ * Fetch a CelesTrak group as raw TLE lines (for satellite.js SGP4 propagation).
+ */
+export async function fetchTLEGroup(group: string): Promise<TLEEntry[]> {
+  const url = `https://celestrak.org/NORAD/elements/gp.php?GROUP=${encodeURIComponent(group)}&FORMAT=tle`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`CelesTrak TLE fetch error: ${response.status}`);
+  }
+  const text = await response.text();
+  return parseTLEText(text);
+}
+
+/**
+ * Fetch a single TLE by NORAD Catalog ID.
+ */
+export async function fetchTLEById(noradId: number): Promise<TLEEntry | null> {
+  const url = `https://celestrak.org/NORAD/elements/gp.php?CATNR=${noradId}&FORMAT=tle`;
+  const response = await fetch(url);
+  if (!response.ok) return null;
+  const text = await response.text();
+  const parsed = parseTLEText(text);
+  return parsed[0] ?? null;
+}
+
 /** Available satellite groups on CelesTrak */
 export const CELESTRAK_GROUPS = {
   'Space Stations': 'stations',

@@ -1,10 +1,12 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Search, Satellite, AlertTriangle, Rocket, Filter, Loader2, Globe, RefreshCw } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Search, Satellite, AlertTriangle, Rocket, Loader2, Globe, RefreshCw, ArrowRight } from 'lucide-react';
 import EarthGlobe from '@/components/EarthGlobe';
 import { orbitalVelocity, orbitalPeriod } from '@/lib/orbital';
 import { CELESTRAK_GROUPS, type ParsedSatellite } from '@/lib/celestrak';
 import { useSatelliteData, useSatelliteSearch } from '@/lib/useSatelliteData';
 import { useDebounce } from '@/lib/useDebounce';
+import { slugify } from '@/lib/slugify';
 
 type FilterType = 'all' | 'satellite' | 'debris' | 'rocket-body';
 
@@ -215,6 +217,12 @@ export default function Tracker() {
                     </div>
                   ))}
                 </div>
+                <Link
+                  to={`/satellite/${selectedObject.noradId}/${slugify(selectedObject.name)}`}
+                  className="mt-4 inline-flex items-center gap-1.5 text-white/60 hover:text-white text-xs font-medium transition-colors"
+                >
+                  View full details & live position <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
             )}
 

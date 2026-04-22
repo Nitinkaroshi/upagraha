@@ -8,6 +8,8 @@ import LifetimeCalculator from '@/pages/LifetimeCalculator';
 import Conjunctions from '@/pages/Conjunctions';
 import DeorbitAdvisor from '@/pages/DeorbitAdvisor';
 import SustainabilityScore from '@/pages/SustainabilityScore';
+import SatellitesOverYou from '@/pages/SatellitesOverYou';
+import SatellitePage from '@/pages/SatellitePage';
 import About from '@/pages/About';
 import Blog from '@/pages/Blog';
 import BlogPost from '@/pages/BlogPost';
@@ -27,6 +29,9 @@ export default function App() {
               <Route path="/conjunctions" element={<Conjunctions />} />
               <Route path="/deorbit-advisor" element={<DeorbitAdvisor />} />
               <Route path="/sustainability" element={<SustainabilityScore />} />
+              <Route path="/satellites-over-you" element={<SatellitesOverYou />} />
+              <Route path="/satellite/:noradId" element={<SatellitePage />} />
+              <Route path="/satellite/:noradId/:slug" element={<SatellitePage />} />
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />

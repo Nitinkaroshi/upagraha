@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://upagraha-ten.vercel.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellites-over-you</loc><priority>1.0</priority><changefreq>daily</changefreq></url>
   <url><loc>https://upagraha-ten.vercel.app/lifetime-calculator</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://upagraha-ten.vercel.app/tracker</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
   <url><loc>https://upagraha-ten.vercel.app/conjunctions</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
@@ -11,4 +12,14 @@
   <url><loc>https://upagraha-ten.vercel.app/blog/what-is-kessler-syndrome</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://upagraha-ten.vercel.app/blog/orbital-lifetime-calculation-explained</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://upagraha-ten.vercel.app/about</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Popular satellite detail pages (seeds Google to crawl /satellite/:id pages) -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/25544/iss-zarya</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/20580/hst</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/48274/tiangong</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/44713/starlink-1007</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/43013/noaa-20</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/39084/landsat-8</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/49260/sentinel-6</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/27424/aqua</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
 </urlset>

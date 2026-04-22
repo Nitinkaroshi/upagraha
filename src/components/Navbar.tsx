@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Satellite, ChevronDown } from 'lucide-react';
 
 const tools = [
+  { to: '/satellites-over-you', label: 'Satellites Over You', badge: 'NEW' },
   { to: '/tracker', label: 'Live Tracker' },
   { to: '/lifetime-calculator', label: 'Lifetime Calculator' },
   { to: '/conjunctions', label: 'Conjunctions' },
@@ -66,13 +67,16 @@ export default function Navbar() {
                     <Link
                       key={tool.to}
                       to={tool.to}
-                      className={`block px-4 py-2.5 text-sm transition-colors ${
+                      className={`flex items-center justify-between px-4 py-2.5 text-sm transition-colors ${
                         location.pathname === tool.to
                           ? 'text-white bg-white/10'
                           : 'text-white/50 hover:text-white hover:bg-white/5'
                       }`}
                     >
-                      {tool.label}
+                      <span>{tool.label}</span>
+                      {tool.badge && (
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white text-black">{tool.badge}</span>
+                      )}
                     </Link>
                   ))}
                 </div>
@@ -114,9 +118,14 @@ export default function Navbar() {
             <div className="px-3 py-2 text-[10px] text-white/25 uppercase tracking-widest">Tools</div>
             {tools.map((tool) => (
               <Link key={tool.to} to={tool.to}
-                className={`block px-3 py-2.5 rounded-lg text-sm ${
+                className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm ${
                   location.pathname === tool.to ? 'text-white bg-white/10' : 'text-white/50 hover:text-white hover:bg-white/5'
-                }`}>{tool.label}</Link>
+                }`}>
+                <span>{tool.label}</span>
+                {tool.badge && (
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white text-black">{tool.badge}</span>
+                )}
+              </Link>
             ))}
             <div className="border-t border-white/[0.06] my-2" />
             {navLinks.map((link) => (
