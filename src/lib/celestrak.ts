@@ -138,11 +138,26 @@ function parseTLEText(text: string): TLEEntry[] {
 }
 
 /**
- * Fetch a CelesTrak group as raw TLE lines (for satellite.js SGP4 propagation).
+ * Fetch a CelesTrak group as raw TLE lines.
+ * CelesTrak's gp.php?FORMAT=TLE sometimes returns 403 — the classic static
+ * URL (/NORAD/elements/{group}.txt) is far more reliable, so we try it first
+ * and fall back to gp.php if needed.
  */
 export async function fetchTLEGroup(group: string): Promise<TLEEntry[]> {
-  const url = `https://celestrak.org/NORAD/elements/gp.php?GROUP=${encodeURIComponent(group)}&FORMAT=tle`;
-  const response = await fetch(url);
+  // Try classic URL first — stable, cached, no rate limiting issues
+  const classicUrl = `https://celestrak.org/NORAD/elements/${encodeURIComponent(group)}.txt`;
+  try {
+    const response = await fetch(classicUrl);
+    if (response.ok) {
+      const text = await response.text();
+      const parsed = parseTLEText(text);
+      if (parsed.length > 0) return parsed;
+    }
+  } catch { /* fall through */ }
+
+  // Fallback: gp.php endpoint (may 403 on some clients)
+  const gpUrl = `https://celestrak.org/NORAD/elements/gp.php?GROUP=${encodeURIComponent(group)}&FORMAT=TLE`;
+  const response = await fetch(gpUrl);
   if (!response.ok) {
     throw new Error(`CelesTrak TLE fetch error: ${response.status}`);
   }
@@ -152,14 +167,106 @@ export async function fetchTLEGroup(group: string): Promise<TLEEntry[]> {
 
 /**
  * Fetch a single TLE by NORAD Catalog ID.
+ * gp.php with CATNR is the only way to grab a specific satellite's TLE;
+ * if it 403s, derive TLE lines from the JSON record instead.
  */
 export async function fetchTLEById(noradId: number): Promise<TLEEntry | null> {
-  const url = `https://celestrak.org/NORAD/elements/gp.php?CATNR=${noradId}&FORMAT=tle`;
+  const url = `https://celestrak.org/NORAD/elements/gp.php?CATNR=${noradId}&FORMAT=TLE`;
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      const text = await response.text();
+      const parsed = parseTLEText(text);
+      if (parsed[0]) return parsed[0];
+    }
+  } catch { /* fall through to JSON-derived TLE */ }
+
+  // Fallback: fetch JSON record and construct TLE lines from Keplerian elements
+  const sat = await fetchSatelliteById(noradId);
+  if (!sat) return null;
+  const record = await fetchJsonRecord(noradId);
+  if (!record) return null;
+  const tle = recordToTLE(record);
+  if (!tle) return null;
+  return { name: sat.name, noradId: sat.noradId, tle1: tle.tle1, tle2: tle.tle2 };
+}
+
+/**
+ * Fetch the raw SatelliteRecord JSON for a single NORAD ID.
+ */
+async function fetchJsonRecord(noradId: number): Promise<SatelliteRecord | null> {
+  const url = `https://celestrak.org/NORAD/elements/gp.php?CATNR=${noradId}&FORMAT=json`;
   const response = await fetch(url);
   if (!response.ok) return null;
-  const text = await response.text();
-  const parsed = parseTLEText(text);
-  return parsed[0] ?? null;
+  const data: SatelliteRecord[] = await response.json();
+  return data[0] ?? null;
+}
+
+/**
+ * Construct valid TLE lines from a CelesTrak JSON GP record.
+ * Used as a fallback when the TLE endpoint returns 403.
+ * Checksum computed per Space-Track convention.
+ */
+function recordToTLE(r: SatelliteRecord): { tle1: string; tle2: string } | null {
+  try {
+    const cat = String(r.NORAD_CAT_ID).padStart(5, ' ');
+    // Parse international designator from OBJECT_ID (e.g. "1998-067A" -> "98067A  ")
+    const objId = r.OBJECT_ID || '';
+    const yr = objId.slice(2, 4);
+    const rest = objId.slice(5).padEnd(6, ' ');
+    const intlDesig = (yr + rest).padEnd(8, ' ');
+
+    // Epoch: "2026-04-22T12:34:56.789012" -> YYDDD.DDDDDDDD
+    const ep = new Date(r.EPOCH);
+    const year2 = String(ep.getUTCFullYear() % 100).padStart(2, '0');
+    const start = Date.UTC(ep.getUTCFullYear(), 0, 0);
+    const diffMs = ep.getTime() - start;
+    const dayOfYear = diffMs / 86400000;
+    const epochStr = `${year2}${dayOfYear.toFixed(8).padStart(12, '0')}`;
+
+    const nDot = Number(r.MEAN_MOTION_DOT) / 2;
+    const nDotStr = (nDot >= 0 ? ' ' : '-') + `.${Math.abs(nDot).toFixed(8).slice(2, 10)}`;
+
+    const bstar = Number(r.BSTAR);
+    const bstarStr = formatExpField(bstar);
+
+    let line1 = `1 ${cat}U ${intlDesig} ${epochStr} ${nDotStr}  00000-0 ${bstarStr} 0  9999`;
+    line1 = line1.slice(0, 68);
+    line1 += computeChecksum(line1);
+
+    const inc = Number(r.INCLINATION).toFixed(4).padStart(8, ' ');
+    const raan = Number(r.RA_OF_ASC_NODE).toFixed(4).padStart(8, ' ');
+    const ecc = Number(r.ECCENTRICITY).toFixed(7).slice(2, 9); // drop "0."
+    const argP = Number(r.ARG_OF_PERICENTER).toFixed(4).padStart(8, ' ');
+    const ma = Number(r.MEAN_ANOMALY).toFixed(4).padStart(8, ' ');
+    const mm = Number(r.MEAN_MOTION).toFixed(8).padStart(11, ' ');
+
+    let line2 = `2 ${cat} ${inc} ${raan} ${ecc} ${argP} ${ma} ${mm}99999`;
+    line2 = line2.slice(0, 68);
+    line2 += computeChecksum(line2);
+
+    return { tle1: line1, tle2: line2 };
+  } catch {
+    return null;
+  }
+}
+
+function formatExpField(n: number): string {
+  if (!Number.isFinite(n) || n === 0) return ' 00000-0';
+  const sign = n < 0 ? '-' : ' ';
+  const abs = Math.abs(n);
+  const exp = Math.floor(Math.log10(abs));
+  const mantissa = Math.round(abs * Math.pow(10, -exp + 4));
+  return `${sign}${mantissa.toString().padStart(5, '0')}${exp >= 0 ? '+' : '-'}${Math.abs(exp)}`;
+}
+
+function computeChecksum(line: string): string {
+  let sum = 0;
+  for (const c of line) {
+    if (c >= '0' && c <= '9') sum += parseInt(c, 10);
+    else if (c === '-') sum += 1;
+  }
+  return String(sum % 10);
 }
 
 /** Available satellite groups on CelesTrak */

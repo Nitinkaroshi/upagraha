@@ -24,6 +24,12 @@ export default function Footer() {
           <div>
             <h3 className="text-white/70 font-medium text-xs uppercase tracking-wider mb-4">Tools</h3>
             <ul className="space-y-2.5">
+              <li>
+                <Link to="/satellites-over-you" className="text-white/40 hover:text-white text-sm transition-colors inline-flex items-center gap-1.5">
+                  Satellites Over You
+                  <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-white text-black tracking-wider">NEW</span>
+                </Link>
+              </li>
               <li><Link to="/tracker" className="text-white/40 hover:text-white text-sm transition-colors">Live Tracker</Link></li>
               <li><Link to="/lifetime-calculator" className="text-white/40 hover:text-white text-sm transition-colors">Lifetime Calculator</Link></li>
               <li><Link to="/conjunctions" className="text-white/40 hover:text-white text-sm transition-colors">Conjunctions</Link></li>

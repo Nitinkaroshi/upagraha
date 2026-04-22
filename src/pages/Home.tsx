@@ -61,8 +61,24 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* NEW-feature announcement bar */}
+      <Link
+        to="/satellites-over-you"
+        className="block bg-white/[0.06] border-b border-white/[0.08] backdrop-blur-xl hover:bg-white/[0.09] transition-colors"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-center gap-3 text-center text-xs sm:text-sm">
+          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white text-black tracking-wider">NEW</span>
+          <MapPin className="w-3.5 h-3.5 text-white/60" />
+          <span className="text-white/70">
+            <span className="text-white font-medium">Satellites Over You</span>
+            <span className="hidden sm:inline"> — see every satellite currently passing over your location</span>
+          </span>
+          <ArrowRight className="w-3.5 h-3.5 text-white/40" />
+        </div>
+      </Link>
+
       {/* Hero */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
+      <section className="relative pt-16 pb-16 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8 items-center min-h-[70vh]">
             <div className="text-center lg:text-left">
@@ -85,17 +101,18 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                 <Link
-                  to="/lifetime-calculator"
+                  to="/satellites-over-you"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/90 transition-all"
+                >
+                  <MapPin className="w-4 h-4" />
+                  See Satellites Over You
+                </Link>
+                <Link
+                  to="/lifetime-calculator"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/[0.08] rounded-lg transition-all"
                 >
                   Try Lifetime Calculator
                   <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/tracker"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/[0.08] rounded-lg transition-all"
-                >
-                  View Live Tracker
                 </Link>
               </div>
             </div>
