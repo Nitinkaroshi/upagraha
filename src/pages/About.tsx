@@ -1,8 +1,22 @@
 import { Link } from 'react-router-dom';
 import { Target, Eye, Zap, Mail, ArrowRight } from 'lucide-react';
 import { GitHubIcon } from '@/components/Icons';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
 
 export default function About() {
+  useDocumentMeta({
+    title: 'About Upagraha — Open-Source Space Debris Tools',
+    description: 'Upagraha makes space sustainability tools free and accessible to every satellite operator. Open source, built by Nitin Karoshi.',
+    canonical: 'https://upagraha-ten.vercel.app/about',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      url: 'https://upagraha-ten.vercel.app/about',
+      name: 'About Upagraha',
+      description: 'Mission, vision, and approach behind Upagraha — open-source space debris monitoring tools.',
+    },
+  });
+
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">

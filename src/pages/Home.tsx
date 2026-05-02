@@ -1,10 +1,45 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calculator, Radio, ShieldCheck, Compass, Leaf, ExternalLink, MapPin } from 'lucide-react';
 import { GitHubIcon } from '@/components/Icons';
-import EarthGlobe from '@/components/EarthGlobe';
 import StatsBar from '@/components/StatsBar';
+import FAQ, { type FAQItem } from '@/components/FAQ';
 import { useSatelliteData } from '@/lib/useSatelliteData';
-import { useMemo } from 'react';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
+import { lazy, Suspense, useMemo } from 'react';
+
+const homeFAQ: FAQItem[] = [
+  {
+    question: 'What is space debris?',
+    answer: 'Space debris is any human-made object in orbit that no longer serves a useful purpose: defunct satellites, spent rocket stages, fragments from collisions or explosions. There are over 36,000 tracked objects larger than 10 cm and an estimated 1 million pieces between 1–10 cm. At orbital velocities (~7.8 km/s in LEO), even a 1 cm fragment carries the kinetic energy of a hand grenade.',
+  },
+  {
+    question: 'What is the FCC 5-year deorbit rule?',
+    answer: 'In 2022 the U.S. Federal Communications Commission adopted a rule requiring all satellites in low Earth orbit (LEO) to deorbit within 5 years of the end of their mission. It applies to all new FCC-licensed missions, including small satellites and CubeSats. The rule replaces the older 25-year guideline and is enforced through FCC Part 25 license conditions.',
+  },
+  {
+    question: 'Are Upagraha tools free?',
+    answer: 'Yes. Every tool on Upagraha is free with no sign-up. The platform is open-source under the MIT license. Future paid features (branded compliance reports, API access, mission portfolio management) will sit on top of the free tier — the core tools stay free forever.',
+  },
+  {
+    question: 'Where does the satellite data come from?',
+    answer: 'We pull live orbital element data from CelesTrak (celestrak.org), a free public catalog maintained by Dr. T.S. Kelso that mirrors data from the U.S. Space Force. Positions are computed in your browser using the SGP4 propagator (the standard NORAD model). Data refreshes hourly.',
+  },
+  {
+    question: 'Can I use these tools for an actual FCC filing?',
+    answer: 'Use Upagraha for design iteration and screening — not as the sole basis for a regulatory filing. For the formal FCC submission, run NASA DAS (Debris Assessment Software). Upagraha helps you iterate orbits and configurations 50× faster, then DAS validates the final answer before you file.',
+  },
+  {
+    question: 'What is Kessler Syndrome?',
+    answer: 'Kessler Syndrome is a runaway-collision scenario proposed by NASA scientist Donald Kessler in 1978. As more debris accumulates in orbit, collision probability rises. Each collision creates more debris, increasing collision probability further. If unchecked, certain orbital regimes could become unusable for generations. The 2009 Iridium-Cosmos collision and the 2007/2021 ASAT tests have already accelerated the timeline.',
+  },
+  {
+    question: 'How does Upagraha differ from NASA DAS or Ansys STK?',
+    answer: 'NASA DAS and Ansys STK are powerful desktop applications that take significant time to install, learn, and run. Upagraha runs entirely in your browser, gives results in seconds, and is free. The tradeoff: simplified physics models suitable for screening and design iteration, not for the formal regulatory submission. Use both — Upagraha for fast iteration, DAS for the final filing.',
+  },
+];
+
+// Three.js + react-three-fiber are ~600 kB. Defer until paint.
+const EarthGlobe = lazy(() => import('@/components/EarthGlobe'));
 
 const tools = [
   {
@@ -48,6 +83,42 @@ const tools = [
 
 export default function Home() {
   const { satellites, loading } = useSatelliteData('active');
+
+  useDocumentMeta({
+    title: 'Upagraha — Free Space Debris & Satellite Compliance Tools',
+    description: 'Free, open-source tools for satellite operators: orbital lifetime calculator with FCC/ESA compliance check, live satellite tracker, deorbit advisor, and sustainability scoring. No sign-up required.',
+    canonical: 'https://upagraha-ten.vercel.app/',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': 'https://upagraha-ten.vercel.app/#website',
+          url: 'https://upagraha-ten.vercel.app/',
+          name: 'Upagraha',
+          description: 'Free, open-source space debris monitoring and regulatory compliance tools.',
+          publisher: { '@id': 'https://upagraha-ten.vercel.app/#org' },
+        },
+        {
+          '@type': 'Organization',
+          '@id': 'https://upagraha-ten.vercel.app/#org',
+          name: 'Upagraha',
+          url: 'https://upagraha-ten.vercel.app/',
+          logo: 'https://upagraha-ten.vercel.app/og-default.png',
+          founder: { '@type': 'Person', name: 'Nitin Karoshi' },
+          sameAs: ['https://github.com/Nitinkaroshi/upagraha'],
+        },
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Upagraha',
+          applicationCategory: 'UtilityApplication',
+          operatingSystem: 'Web',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Open-source space debris monitoring and regulatory compliance platform.',
+        },
+      ],
+    },
+  });
 
   const liveCounts = useMemo(() => {
     if (!satellites.length) return undefined;
@@ -118,7 +189,9 @@ export default function Home() {
             </div>
 
             <div className="h-[400px] lg:h-[550px]">
-              <EarthGlobe satellites={satellites} showCounter={!loading && satellites.length > 0} />
+              <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/20 text-xs">Loading globe…</div>}>
+                <EarthGlobe satellites={satellites} showCounter={!loading && satellites.length > 0} />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -165,6 +238,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FAQ items={homeFAQ} />
 
       {/* Why section */}
       <section className="py-24 border-t border-white/[0.04]">

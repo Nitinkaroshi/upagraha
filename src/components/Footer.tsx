@@ -35,6 +35,12 @@ export default function Footer() {
               <li><Link to="/conjunctions" className="text-white/40 hover:text-white text-sm transition-colors">Conjunctions</Link></li>
               <li><Link to="/deorbit-advisor" className="text-white/40 hover:text-white text-sm transition-colors">Deorbit Advisor</Link></li>
               <li><Link to="/sustainability" className="text-white/40 hover:text-white text-sm transition-colors">Sustainability Score</Link></li>
+              <li>
+                <Link to="/compare" className="text-white/40 hover:text-white text-sm transition-colors inline-flex items-center gap-1.5">
+                  Compare Satellites
+                  <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-white text-black tracking-wider">NEW</span>
+                </Link>
+              </li>
             </ul>
           </div>
 

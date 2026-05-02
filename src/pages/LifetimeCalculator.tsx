@@ -1,8 +1,36 @@
 import { useState, useMemo, useCallback } from 'react';
 import { Calculator, CheckCircle, XCircle, AlertTriangle, Info, Download, FileText } from 'lucide-react';
 import { calculateOrbitalLifetime, orbitalPeriod, orbitalVelocity, type LifetimeResult } from '@/lib/orbital';
-import { generateCompliancePDF } from '@/lib/pdfReport';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
+import FAQ, { type FAQItem } from '@/components/FAQ';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+
+const calculatorFAQ: FAQItem[] = [
+  {
+    question: 'How is orbital lifetime calculated?',
+    answer: 'We model atmospheric drag using a layered exponential atmosphere (1976 US Standard Atmosphere) and integrate the King-Hele orbit-averaged decay equation forward in time. Inputs that drive the result: altitude, ballistic coefficient (mass / drag-coefficient × area), drag coefficient, and assumed solar activity level. The simulation steps day-by-day until the satellite drops below 120 km (atmospheric reentry).',
+  },
+  {
+    question: 'What is a ballistic coefficient and why does it matter?',
+    answer: 'Ballistic coefficient B = m / (Cd × A), where m is mass (kg), Cd is the drag coefficient (~2.2 typical), and A is the cross-sectional area (m²). A higher ballistic coefficient means the satellite is heavier relative to its drag area, so it decays slower. A 3U CubeSat (4 kg, 0.03 m²) has a much lower B than a Starlink-class satellite (260 kg, 3.4 m²).',
+  },
+  {
+    question: 'How accurate is this calculator?',
+    answer: 'Within roughly ±30% for screening purposes. Solar activity uncertainty alone (the 11-year cycle plus solar storm variability) introduces 2-5× variation in atmospheric density at LEO altitudes. For a regulatory filing, run NASA DAS (Debris Assessment Software) which uses higher-fidelity atmospheric models like NRLMSISE-00.',
+  },
+  {
+    question: 'What does the FCC 5-year rule mean for me?',
+    answer: 'If you are filing for a new FCC license for a non-geostationary satellite system after 2024, your satellite must demonstrate it will deorbit within 5 years of mission end. This applies to single satellites, constellations, CubeSats — no size exemption. Failure to demonstrate compliance can result in license denial.',
+  },
+  {
+    question: 'What can I do if my satellite fails the 5-year check?',
+    answer: 'Three main options: (1) lower your operational altitude — most LEO orbits below ~500km decay naturally within 5 years; (2) add a deorbit device — drag sail, propulsion, or electrodynamic tether; (3) reduce ballistic coefficient — increase area-to-mass ratio. Use our Deorbit Strategy Advisor for cost-and-feasibility comparisons.',
+  },
+  {
+    question: 'Can I export this for my FCC filing?',
+    answer: 'You can export a branded PDF report that summarizes inputs, results, decay profile, and the relevant regulatory references (47 CFR § 25.114, ESA Space Debris Mitigation guidelines). This is suitable for internal review and stakeholder presentations. For the formal FCC submission, the agency expects NASA DAS output, but our PDF gives you a fast iteration tool.',
+  },
+];
 
 const presets = [
   { label: 'CubeSat (3U)', mass: 4, area: 0.03, desc: '3U CubeSat, 4kg' },
@@ -85,6 +113,22 @@ DISCLAIMER
 }
 
 export default function LifetimeCalculator() {
+  useDocumentMeta({
+    title: 'Orbital Lifetime Calculator — FCC 5-Year Compliance Check | Upagraha',
+    description: 'Free orbital lifetime calculator. Estimate satellite deorbit time, check FCC 5-year and ESA 25-year compliance, export branded PDF report. No sign-up.',
+    canonical: 'https://upagraha-ten.vercel.app/lifetime-calculator',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Orbital Lifetime Calculator',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web',
+      url: 'https://upagraha-ten.vercel.app/lifetime-calculator',
+      description: 'Calculate orbital lifetime and check FCC/ESA debris-mitigation compliance for any satellite design.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  });
+
   const [altitude, setAltitude] = useState(500);
   const [mass, setMass] = useState(50);
   const [area, setArea] = useState(0.25);
@@ -266,7 +310,11 @@ export default function LifetimeCalculator() {
                     <div className="flex items-center gap-3">
                       <RiskBadge level={result.riskLevel} />
                       <button
-                        onClick={() => result && generateCompliancePDF(altitude, mass, area, dragCd, solar, result)}
+                        onClick={async () => {
+                          if (!result) return;
+                          const { generateCompliancePDF } = await import('@/lib/pdfReport');
+                          generateCompliancePDF(altitude, mass, area, dragCd, solar, result);
+                        }}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-black text-xs font-semibold hover:bg-white/90 transition-all"
                       >
                         <FileText className="w-3.5 h-3.5" />
@@ -381,6 +429,8 @@ export default function LifetimeCalculator() {
           </div>
         </div>
       </div>
+
+      <FAQ items={calculatorFAQ} title="Lifetime Calculator FAQ" />
     </div>
   );
 }

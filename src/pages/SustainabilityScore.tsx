@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Leaf, Share2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { calculateSustainabilityScore, type SustainabilityInput } from '@/lib/sustainability';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
 
 function ScoreGauge({ score, grade }: { score: number; grade: string }) {
   const circumference = 2 * Math.PI * 70;
@@ -25,6 +26,22 @@ function ScoreGauge({ score, grade }: { score: number; grade: string }) {
 }
 
 export default function SustainabilityScore() {
+  useDocumentMeta({
+    title: 'Space Sustainability Score — Rate Your Satellite Mission | Upagraha',
+    description: 'Score your satellite mission 0-100 on 5 debris-risk factors. Free tool with letter grade, factor breakdown, and improvement recommendations.',
+    canonical: 'https://upagraha-ten.vercel.app/sustainability',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Space Sustainability Score',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web',
+      url: 'https://upagraha-ten.vercel.app/sustainability',
+      description: 'Rate your satellite mission on orbital lifetime, collision avoidance, deorbit plan, regime risk, and debris generation.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  });
+
   const [input, setInput] = useState<SustainabilityInput>({
     altitude: 500,
     mass: 50,

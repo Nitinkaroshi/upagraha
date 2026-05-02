@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Satellite, ChevronDown } from 'lucide-react';
 
-const tools = [
-  { to: '/satellites-over-you', label: 'Satellites Over You', badge: 'NEW' },
+const tools: { to: string; label: string; badge?: string }[] = [
+  { to: '/satellites-over-you', label: 'Satellites Over You' },
+  { to: '/compare', label: 'Compare Satellites', badge: 'NEW' },
   { to: '/tracker', label: 'Live Tracker' },
   { to: '/lifetime-calculator', label: 'Lifetime Calculator' },
   { to: '/conjunctions', label: 'Conjunctions' },

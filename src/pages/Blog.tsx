@@ -1,41 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
+import { articleList, type Article } from '@/content/articles';
 
-interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-}
+type BlogPost = Pick<Article, 'slug' | 'title' | 'excerpt' | 'date' | 'readTime' | 'tags'>;
 
-const posts: BlogPost[] = [
-  {
-    slug: 'fcc-5-year-deorbit-rule-compliance-guide',
-    title: 'Complete Guide to FCC 5-Year Deorbit Compliance',
-    excerpt: 'The FCC now requires all LEO satellites to deorbit within 5 years of mission end. Here\'s everything satellite operators need to know about the new rule, how to calculate your orbital lifetime, and how to demonstrate compliance.',
-    date: '2026-03-30',
-    readTime: '8 min',
-    tags: ['Compliance', 'FCC', 'Regulations'],
-  },
-  {
-    slug: 'what-is-kessler-syndrome',
-    title: 'What is Kessler Syndrome and Why Should You Care?',
-    excerpt: 'A chain reaction of orbital collisions could render Low Earth Orbit unusable. We explain the science, the current risk level, and what the space industry is doing about it.',
-    date: '2026-03-28',
-    readTime: '6 min',
-    tags: ['Space Debris', 'Education'],
-  },
-  {
-    slug: 'orbital-lifetime-calculation-explained',
-    title: 'How Orbital Lifetime Calculations Work: A Technical Guide',
-    excerpt: 'Understanding atmospheric drag, solar activity, and ballistic coefficients. A practical guide for satellite engineers and mission planners.',
-    date: '2026-03-25',
-    readTime: '10 min',
-    tags: ['Technical', 'Orbital Mechanics'],
-  },
-];
+const posts: BlogPost[] = articleList.map(({ slug, title, excerpt, date, readTime, tags }) => ({
+  slug, title, excerpt, date, readTime, tags,
+}));
 
 function BlogPostCard({ post }: { post: BlogPost }) {
   return (
@@ -82,6 +54,26 @@ function BlogPostCard({ post }: { post: BlogPost }) {
 }
 
 export default function Blog() {
+  useDocumentMeta({
+    title: 'Space Debris & Compliance Blog — Upagraha',
+    description: 'Technical guides on space debris, FCC compliance, orbital mechanics, and satellite sustainability. From an open-source space-tech platform.',
+    canonical: 'https://upagraha-ten.vercel.app/blog',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'Upagraha Blog',
+      url: 'https://upagraha-ten.vercel.app/blog',
+      description: 'Space debris, satellite compliance, and orbital mechanics guides.',
+      blogPost: posts.map((p) => ({
+        '@type': 'BlogPosting',
+        headline: p.title,
+        description: p.excerpt,
+        datePublished: p.date,
+        url: `https://upagraha-ten.vercel.app/blog/${p.slug}`,
+      })),
+    },
+  });
+
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">

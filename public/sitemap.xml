@@ -1,25 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://upagraha-ten.vercel.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellites-over-you</loc><priority>1.0</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/lifetime-calculator</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/tracker</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/conjunctions</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/deorbit-advisor</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/sustainability</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/blog</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/blog/fcc-5-year-deorbit-rule-compliance-guide</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/blog/what-is-kessler-syndrome</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/blog/orbital-lifetime-calculation-explained</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/about</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <!-- Core routes -->
+  <url><loc>https://upagraha-ten.vercel.app/</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellites-over-you</loc><lastmod>2026-05-03</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/lifetime-calculator</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/tracker</loc><lastmod>2026-05-03</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/conjunctions</loc><lastmod>2026-05-03</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/deorbit-advisor</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/sustainability</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/compare</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/compare?a=25544&amp;b=20580</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/compare?a=25544&amp;b=48274</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/about</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
-  <!-- Popular satellite detail pages (seeds Google to crawl /satellite/:id pages) -->
-  <url><loc>https://upagraha-ten.vercel.app/satellite/25544/iss-zarya</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/20580/hst</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/48274/tiangong</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/44713/starlink-1007</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/43013/noaa-20</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/39084/landsat-8</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/49260/sentinel-6</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://upagraha-ten.vercel.app/satellite/27424/aqua</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <!-- Blog -->
+  <url><loc>https://upagraha-ten.vercel.app/blog</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/fcc-5-year-deorbit-rule-compliance-guide</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/what-is-kessler-syndrome</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/orbital-lifetime-calculation-explained</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/fcc-part-25-satellite-application-checklist</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/drag-sail-vs-propulsion-deorbit</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/how-to-read-a-tle-two-line-element</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/when-can-i-see-the-iss-tonight</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/blog/ballistic-coefficient-explained</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- Famous & high-search-volume satellites -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/25544/iss-zarya</loc><lastmod>2026-05-03</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/20580/hst</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/48274/tiangong</loc><lastmod>2026-05-03</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/50463/jwst</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Earth observation -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/43013/noaa-20</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/39084/landsat-8</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/49260/sentinel-6</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/27424/aqua</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/25994/terra</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/40069/sentinel-1a</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/41335/sentinel-3a</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/41866/goes-16</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/43689/cartosat-2f</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <!-- Starlink popular IDs -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/44713/starlink-1007</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/44714/starlink-1008</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/44715/starlink-1009</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/45531/starlink-1228</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/45532/starlink-1229</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+
+  <!-- GPS / GNSS -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/32260/gps-iif-1</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/40294/gps-iif-9</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/41019/galileo-9</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/41549/galileo-13</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+
+  <!-- Communications -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/24946/iridium-3</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/41917/iridium-next-103</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/26464/oneweb-0001</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+
+  <!-- ISRO -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/45026/cartosat-3</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/41241/risat-2br1</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/40267/imagesat-irs</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+
+  <!-- CubeSat / SmallSat samples -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/40043/lapan-a2</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/42017/uniformat-1</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/47242/lemur-2</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/49013/dove-pioneer</loc><lastmod>2026-05-03</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+
+  <!-- Famous debris -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/22675/cosmos-2251-debris</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/24946/iridium-33-debris</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/29657/fengyun-1c-debris</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- Famous historic -->
+  <url><loc>https://upagraha-ten.vercel.app/satellite/4793/vanguard-1</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/694/vanguard-2</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://upagraha-ten.vercel.app/satellite/733/echo-1</loc><lastmod>2026-05-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>

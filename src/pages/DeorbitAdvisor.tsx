@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Compass, CheckCircle, AlertTriangle, DollarSign, Clock, Zap } from 'lucide-react';
 import { recommendDeorbitStrategies, type DeorbitStrategy } from '@/lib/deorbit';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
 
 const feasibilityStyles = {
   excellent: { bg: 'bg-white/10', border: 'border-white/20', text: 'text-white', label: 'EXCELLENT' },
@@ -110,6 +111,22 @@ function StrategyCard({ strategy, rank }: { strategy: DeorbitStrategy; rank: num
 }
 
 export default function DeorbitAdvisor() {
+  useDocumentMeta({
+    title: 'Deorbit Strategy Advisor — Cost & Feasibility for 4 Methods | Upagraha',
+    description: 'Free deorbit strategy recommendation tool. Compare natural decay, drag sail, propulsive, and electrodynamic tether with cost estimates and delta-V calculations.',
+    canonical: 'https://upagraha-ten.vercel.app/deorbit-advisor',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Deorbit Strategy Advisor',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web',
+      url: 'https://upagraha-ten.vercel.app/deorbit-advisor',
+      description: 'Get ranked deorbit-strategy recommendations with cost, delta-V, and feasibility scores.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  });
+
   const [altitude, setAltitude] = useState(600);
   const [mass, setMass] = useState(50);
   const [area, setArea] = useState(0.25);

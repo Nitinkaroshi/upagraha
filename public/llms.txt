@@ -1,0 +1,50 @@
+# Upagraha
+
+> Free, open-source space debris monitoring and regulatory compliance tools for satellite operators. Calculate orbital lifetime, check FCC/ESA compliance, plan deorbit strategies, score mission sustainability, and visualize the orbital environment with live CelesTrak data — all in your browser, no sign-up.
+
+## What we do
+
+Upagraha provides a suite of free in-browser tools for satellite operators, university CubeSat programs, aerospace consultants, and space enthusiasts. The platform is open-source under MIT (https://github.com/Nitinkaroshi/upagraha) and runs entirely client-side — no servers, no accounts, no fees.
+
+Founder: Nitin Karoshi (https://github.com/Nitinkaroshi)
+Site: https://upagraha-ten.vercel.app
+
+## Tools
+
+- [Orbital Lifetime Calculator](https://upagraha-ten.vercel.app/lifetime-calculator): Calculate satellite deorbit time, check FCC 5-year and ESA 25-year compliance, export branded PDF reports.
+- [Live Satellite Tracker](https://upagraha-ten.vercel.app/tracker): Real-time 3D visualization of 8,000+ satellites with 15 CelesTrak catalog groups (Starlink, ISS, GPS, debris).
+- [Deorbit Strategy Advisor](https://upagraha-ten.vercel.app/deorbit-advisor): Get ranked deorbit strategy recommendations (natural decay, drag sail, propulsive, electrodynamic tether) with cost estimates and delta-V calculations.
+- [Space Sustainability Score](https://upagraha-ten.vercel.app/sustainability): Rate satellite missions 0-100 on 5 debris-risk factors with letter grade and improvement recommendations.
+- [Conjunction Risk Viewer](https://upagraha-ten.vercel.app/conjunctions): Monitor predicted close approaches between tracked orbital objects.
+- [Satellites Over You](https://upagraha-ten.vercel.app/satellites-over-you): Geolocation-based real-time tracker showing every satellite currently passing overhead.
+- [Compare Satellites](https://upagraha-ten.vercel.app/compare): Side-by-side comparison of any two satellites (ISS vs Hubble, Starlink vs Tiangong, etc.).
+- [Per-satellite pages](https://upagraha-ten.vercel.app/satellite/25544/iss-zarya): Live position, orbital parameters, and lifetime estimate for any NORAD-cataloged satellite.
+
+## Educational content
+
+- [FCC 5-Year Deorbit Rule Compliance Guide](https://upagraha-ten.vercel.app/blog/fcc-5-year-deorbit-rule-compliance-guide): Complete guide to the 2024 FCC mandate that LEO satellites deorbit within 5 years of mission end.
+- [FCC Part 25 Application Filing Checklist](https://upagraha-ten.vercel.app/blog/fcc-part-25-satellite-application-checklist): Step-by-step Part 25 filing guide for small satellite operators.
+- [Drag Sail vs Propulsion: Deorbit Strategy Comparison](https://upagraha-ten.vercel.app/blog/drag-sail-vs-propulsion-deorbit): Practical comparison of all four deorbit methods.
+- [How to Read a Two-Line Element (TLE)](https://upagraha-ten.vercel.app/blog/how-to-read-a-tle-two-line-element): Field-by-field breakdown of the standard satellite orbital data format.
+- [Ballistic Coefficient Explained](https://upagraha-ten.vercel.app/blog/ballistic-coefficient-explained): How to calculate the single most important parameter in orbital lifetime analysis.
+- [When Can I See the ISS Tonight?](https://upagraha-ten.vercel.app/blog/when-can-i-see-the-iss-tonight): Live pass predictor plus 10 other bright satellites you can spot.
+- [Orbital Lifetime Calculation: Technical Guide](https://upagraha-ten.vercel.app/blog/orbital-lifetime-calculation-explained): Atmospheric drag, solar activity, ballistic coefficients explained.
+- [What is Kessler Syndrome](https://upagraha-ten.vercel.app/blog/what-is-kessler-syndrome): The chain-reaction collision scenario explained.
+
+## Authoritative sources we cite
+
+- CelesTrak (https://celestrak.org) — satellite catalog and TLE data
+- FCC 47 CFR § 25.114 — orbital debris mitigation regulations
+- NASA Debris Assessment Software (DAS) — official compliance analysis tool
+- ESA Space Debris Mitigation Compliance Verification Guidelines
+- US Standard Atmosphere 1976 — atmospheric density model
+- Hoots & Roehrich (1980) — original SGP4 paper
+
+## License
+
+Code: MIT License (https://github.com/Nitinkaroshi/upagraha/blob/main/LICENSE)
+Content: Free to cite with attribution to https://upagraha-ten.vercel.app
+
+## Contact
+
+upagraha.space@gmail.com

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { ShieldAlert, Clock, ArrowUpDown, Info } from 'lucide-react';
 import { generateConjunctionEvents, type ConjunctionEvent } from '@/lib/orbital';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
 
 function RiskDot({ level }: { level: ConjunctionEvent['riskLevel'] }) {
   const opacity = { low: '20', medium: '40', high: '70', critical: '100' }[level];
@@ -15,6 +16,22 @@ function RiskDot({ level }: { level: ConjunctionEvent['riskLevel'] }) {
 }
 
 export default function Conjunctions() {
+  useDocumentMeta({
+    title: 'Satellite Conjunction Risk Viewer — Close Approach Events | Upagraha',
+    description: 'Monitor predicted close approaches between satellites and debris. Assess collision probability and risk levels for tracked orbital objects.',
+    canonical: 'https://upagraha-ten.vercel.app/conjunctions',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Conjunction Risk Viewer',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web',
+      url: 'https://upagraha-ten.vercel.app/conjunctions',
+      description: 'View predicted close-approach events between orbital objects with risk levels and miss-distance estimates.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  });
+
   const [sortBy, setSortBy] = useState<'probability' | 'time' | 'distance'>('probability');
   const [filterRisk, setFilterRisk] = useState<'all' | 'critical' | 'high' | 'medium' | 'low'>('all');
 

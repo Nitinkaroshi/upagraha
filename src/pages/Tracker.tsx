@@ -1,12 +1,14 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Satellite, AlertTriangle, Rocket, Loader2, Globe, RefreshCw, ArrowRight } from 'lucide-react';
-import EarthGlobe from '@/components/EarthGlobe';
+
+const EarthGlobe = lazy(() => import('@/components/EarthGlobe'));
 import { orbitalVelocity, orbitalPeriod } from '@/lib/orbital';
 import { CELESTRAK_GROUPS, type ParsedSatellite } from '@/lib/celestrak';
 import { useSatelliteData, useSatelliteSearch } from '@/lib/useSatelliteData';
 import { useDebounce } from '@/lib/useDebounce';
 import { slugify } from '@/lib/slugify';
+import { useDocumentMeta } from '@/lib/useDocumentMeta';
 
 type FilterType = 'all' | 'satellite' | 'debris' | 'rocket-body';
 
@@ -23,6 +25,22 @@ function fmt(n: number | null | undefined, digits = 1, suffix = ''): string {
 }
 
 export default function Tracker() {
+  useDocumentMeta({
+    title: 'Live Satellite Tracker — Real-Time CelesTrak Data | Upagraha',
+    description: 'Free 3D satellite tracker. Search 8,000+ active satellites by name or NORAD ID. Live data from CelesTrak with 15 catalog groups: ISS, Starlink, GPS, debris.',
+    canonical: 'https://upagraha-ten.vercel.app/tracker',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Live Satellite Tracker',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web',
+      url: 'https://upagraha-ten.vercel.app/tracker',
+      description: 'Real-time 3D visualization of satellites and debris in Earth orbit with live CelesTrak data.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  });
+
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<FilterType>('all');
   const [selectedObject, setSelectedObject] = useState<ParsedSatellite | null>(null);
@@ -180,7 +198,9 @@ export default function Tracker() {
 
           <div className="lg:col-span-2 space-y-4">
             <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl overflow-hidden h-[500px]">
-              <EarthGlobe />
+              <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/20 text-xs">Loading globe…</div>}>
+                <EarthGlobe />
+              </Suspense>
             </div>
 
             {selectedObject && (
